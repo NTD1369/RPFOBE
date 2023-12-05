@@ -1,0 +1,111 @@
+
+/****** Object:  UserDefinedFunction [dbo].[fnc_AutoGenShiftWithPrefix]    Script Date: 14/02/2023 11:15:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- select dbo.[fnc_AutoGenShiftWithPrefix]('CP001','3008','S')
+ALTER FUNCTION [dbo].[fnc_AutoGenShiftWithPrefix](
+	@CompanyCode nvarchar(20),
+	@StoreId nvarchar(30),
+	@Prefix nvarchar(20) = null
+) 
+
+RETURNS VARCHAR(50)
+AS
+BEGIN
+    DECLARE @id VARCHAR(50)
+
+	 
+	if(isnull(@Prefix,  '') = '')
+	begin
+	
+		set @id = (SELECT CONCAT( @StoreId + FORMAT(getdate(), 'yyMMddsss'), RIGHT(CONCAT('00000',ISNULL( MAX( CONVERT (int, right(ShiftId,5))), 0) + 1),5)) 
+					from T_ShiftHeader with (nolock)
+					where StoreId = @StoreId and CONVERT(date, CreatedOn) = CONVERT(date, getdate()) and CompanyCode = @CompanyCode
+					group by StoreId)
+		if @id is null
+		set @id = ( SELECT CONCAT( @StoreId + FORMAT(getdate(), 'yyMMddsss'), '00001') )
+				 
+	
+	end
+	else
+	begin 
+		 
+
+		set @Prefix = REPLACE(@Prefix, '-','')
+		set @id = (SELECT CONCAT( @Prefix  + FORMAT(getdate(), 'yyMMdd'), RIGHT(CONCAT('000',ISNULL( MAX( CONVERT (int, right(ShiftId,3))), 0) + 1),3)) 
+					from T_ShiftHeader with (nolock)
+					where StoreId = @StoreId and CONVERT(date, CreatedOn) = CONVERT(date, getdate()) and CompanyCode = @CompanyCode
+					group by StoreId)
+		if @id is null
+		set @id = ( SELECT CONCAT(@Prefix  + FORMAT(getdate(), 'yyMMdd'), '001') )
+
+
+	end
+	if ((select count(*) from T_ShiftHeader where ShiftId = @id and CompanyCode = @CompanyCode and StoreId = @StoreId) > 0)
+	begin
+		set @id = (select dbo.[fnc_AutoGenShiftWithPrefix](@CompanyCode, @StoreId, @Prefix ))
+	end
+	RETURN @id
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[USP_I_T_ShiftHeader]    Script Date: 14/02/2023 11:16:38 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER PROCEDURE [dbo].[USP_I_T_ShiftHeader]
+	@ShiftId	nvarchar(50)	,
+	@CompanyCode	nvarchar(50)	,
+	@StoreId	nvarchar(50)	,
+	@DailyId	nvarchar(50)	,
+	@DeviceId	nvarchar(50)	,
+	@OpenAmt	decimal(19, 6)	,
+	@EndAmt	decimal(19, 6)	,
+	@ShiftTotal	decimal(19, 6)	,
+	@CreatedBy	nvarchar(50),
+	@Status	char(1)	,
+	@Id	nvarchar(50) = null,
+	@PrefixShift	nvarchar(150) = null
+AS
+BEGIN 
+	set @ShiftId = (select  dbo.[fnc_AutoGenShiftWithPrefix](@CompanyCode, @StoreId,  ISNULL(@DeviceId ,  'S')))
+ 
+	INSERT INTO [dbo].[T_ShiftHeader]
+			   ([ShiftId]
+			   ,[CompanyCode]
+			   ,[StoreId]
+			   ,[DailyId]
+			   ,[DeviceId]
+			   ,[OpenAmt]
+			   ,[EndAmt]
+			   ,[ShiftTotal]
+          
+			   ,[CreatedBy]
+				,CreatedOn
+			   ,[Status], Id)
+		 VALUES
+			   (@ShiftId,
+				@CompanyCode,
+			   @StoreId,
+			   @DailyId,
+			   @DeviceId,
+			   @OpenAmt,
+			   @EndAmt,
+			   @ShiftTotal,
+          
+			   @CreatedBy,
+			   GETDATE(),
+			   @Status, @Id)
+
+
+	select @ShiftId
+	
+
+
+END

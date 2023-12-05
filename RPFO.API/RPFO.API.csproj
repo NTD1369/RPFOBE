@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>d424c823-c4a7-4cda-b06d-9b0a0962b527</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <!--<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\Promotions11Controller.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="ClosedXML" Version="0.95.4" />
+	 <PackageReference Include="MailKit" Version="3.2.0" />
+    <!--<PackageReference Include="iTextSharp" Version="5.5.13.3" />-->
+    <!--<PackageReference Include="DevExpress.Reporting.Core" Version="21.2.3" />-->
+    <PackageReference Include="Microsoft.AspNet.SignalR" Version="2.4.2" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.4.3" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.0" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.0" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <!--<PackageReference Include="Spire.PDF" Version="8.2.2" />-->
+    <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="System.IO.Ports" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RPFO.Application\RPFO.Application.csproj" />
+    <ProjectReference Include="..\RPFO.Data\RPFO.Data.csproj" />
+    <ProjectReference Include="..\RPFO.Utilities\RPFO.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entities_MWI\**" />
+    <EmbeddedResource Remove="Entities_MWI\**" />
+    <None Remove="Entities_MWI\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Context\JumpContext.cs" />
+    <Compile Remove="Context\MwiContext.cs" />
+    <Compile Remove="Repositories\GenericMultiRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.78" />
+    <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+    <PackageReference Include="Dapper.SimpleCRUD" Version="2.2.0.1" />
+    <!--<PackageReference Include="DevExpress.Document.Processor" Version="21.2.6" />-->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RPFO.Utilities\RPFO.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,26 @@
+
+INSERT [dbo].[M_Store] ([StoreId], [CompanyCode], [StoreName], [StoreDescription], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn], [Status], [ForeignName], [Address], [Phone], [DefaultCusId], [StoreGroupId], [ProvinceId], [DistrictId], [WardId], [CountryCode], [CustomField1], [CustomField2], [CustomField3], [CustomField4], [CustomField5], [AreaCode], [CurrencyCode], [StoreType], [ListType], [FormatConfigId], [WhsCode], [RegionCode], [PrintRemarks]) 
+
+VALUES (@StoreId, N'CP001', @StoreName, @StoreName, N'system', CAST(N'2023-01-09T11:16:33.717' AS DateTime), NULL, NULL, N'A', @StoreName, @StoreAddress, N'', @StoreId, N'Mini', N'', N'', N'', N'458', N'T' + @StoreId, N'S1', N'', N'', N'', N'', N'MYR', N'', N'', N'2', N'W'+ @StoreId, N'', N'')
+ 
+INSERT [dbo].[M_Warehouse] ([WhsCode], [CompanyCode], [WhsName], [StoreId], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn], [Status], [WhsType], [DefaultSlocId]) VALUES (N'T3023', N'CP001', @StoreName, NULL, N'admin', CAST(N'2021-10-23T19:03:26.230' AS DateTime), N'admin', CAST(N'2021-10-28T11:53:35.583' AS DateTime), N'A', N'T', N'T3023')
+ 
+INSERT [dbo].[M_Warehouse] ([WhsCode], [CompanyCode], [WhsName], [StoreId], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn], [Status], [WhsType], [DefaultSlocId]) VALUES (N'W3023', N'CP001', @StoreName, NULL, N'admin', CAST(N'2021-10-23T19:03:26.237' AS DateTime), N'admin', CAST(N'2021-10-28T11:54:22.430' AS DateTime), N'A', N'W', N'W3023')
+ 
+ 
+INSERT [dbo].[S_StoreClient] ([Id], [CompanyCode], [StoreId], [Name], [LocalIP], [PublicIP], [Custom1], [Custom2], [Custom3], [Custom4], [Custom5], [FromDate], [ToDate], [Status] ) 
+
+VALUES (Newid(), N'CP001', @StoreId,@StoreId + '-' + N'CTR01',Newid(), @StoreId + '-' + N'CTR01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, N'A' )
+ 
+INSERT [dbo].[S_StoreClient] ([Id], [CompanyCode], [StoreId], [Name], [LocalIP], [PublicIP], [Custom1], [Custom2], [Custom3], [Custom4], [Custom5], [FromDate], [ToDate], [Status] ) 
+
+VALUES (Newid(), N'CP001',@StoreId, @StoreId + '-' + N'CTR02', Newid(), @StoreId + '-' + N'CTR02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, N'A' )
+ 
+
+INSERT [dbo].[M_StorePayment] ([StoreId], [PaymentCode], [isShow], [OrderNum], [Status], [AllowMix]) 
+select @StoreId, [PaymentCode], [isShow], [OrderNum], [Status], [AllowMix] from M_StorePayment where StoreId = '2019'
+ 
+INSERT [dbo].[M_ExchangeRate] ([Id], [CompanyCode], [StoreId], [Date], [Currency], [Rate], [Status], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn], [SyncDate], [SyncSource]) VALUES (NewId(), N'CP001', @StoreId, CAST(N'2021-11-01T00:00:00.000' AS DateTime), N'MYR', CAST(1.000000 AS Decimal(19, 6)), N'A', NULL, Getdate(), NULL, NULL, NULL, NULL)
+
+INSERT [dbo].[M_Customer] ([CompanyCode], [CustomerId], [CustomerGrpId], [CustomerName], [Address], [Phone], [DOB], [JoinedDate], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn], [Status], [CusType], [SyncDate], [SyncSource], [CustomerRank], [CustomerRankName], [RewardPoints], [Gender], [Email], [CardNo], [CustomF1], [CustomF2], [CustomF3], [CustomF4], [CustomF5], [DoNotAccumPoints], [CreatedByStore]) 
+VALUES (N'CP001', @StoreId, N'2', N'Walk-in', @StoreName, N'', NULL, CAST(N'2022-01-24T11:54:38.000' AS DateTime), N'admin', CAST(N'2022-01-24T12:54:39.597' AS DateTime), NULL, NULL, N'A', N'C', NULL, NULL, N'', N'', NULL, N'', N'', NULL, N'', N'', N'', N'', N'', NULL, NULL)

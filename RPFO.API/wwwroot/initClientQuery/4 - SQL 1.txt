@@ -1,0 +1,2148 @@
+
+INSERT [dbo].[M_User] ([UserId], [CompanyCode], [Username], [Password], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn], [LastLoginStoreId], [LastLoginStoreLang], [Status], [FirstName], [LastName], [Position], [DefEmployee], [DefStore], [CustomF1], [CustomF2], [CustomF3], [CustomF4], [CustomF5], [QRBarcode], [SyncLocalStatus], [SyncLocalDate]) VALUES (N'baaa94f4-5e31-42c9-8b3d-55c1d3457a3a', N'CP001', N'admin', N'peNAnAIDMHHd9KOPeXlmvw==', N'admin', CAST(N'2022-12-19T19:12:02.530' AS DateTime), N'ANDREW', CAST(N'2022-12-02T14:06:43.040' AS DateTime), N'3004', NULL, N'A', N'admin', N'admin', N'admin', N'admin', NULL, NULL, NULL, NULL, NULL, NULL, N'anHX8SWQsO52ntAtbVD12A==', NULL, CAST(N'2022-12-19T19:12:02.527' AS DateTime))
+GO
+INSERT [dbo].[M_UserRole] ([UserId], [RoleId], [SyncLocalStatus], [SyncLocalDate]) VALUES (N'BAAA94F4-5E31-42C9-8B3D-55C1D3457A3A', N'b03f1d02-7f3d-4a16-91d1-2196c6a7d2b7', NULL, CAST(N'2022-12-19T19:12:02.527' AS DateTime))
+GO
+INSERT [dbo].[M_UserStore] ([UserId], [StoreId], [SyncLocalStatus], [SyncLocalDate]) VALUES (N'baaa94f4-5e31-42c9-8b3d-55c1d3457a3a', N'3022', NULL, CAST(N'2022-12-19T19:12:02.527' AS DateTime))
+GO
+
+/****** Object:  Table [dbo].[S_ConnectSetting]    Script Date: 28/06/2022 13:53:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[S_ConnectSetting](
+	[SettingID] [nvarchar](50) NOT NULL,
+	[CompanyCode] [nvarchar](50) NOT NULL,
+	[SettingName] [nvarchar](250) NULL,
+	[SettingValue] [nvarchar](500) NULL,
+	[SettingDescription] [nvarchar](250) NULL
+) ON [PRIMARY]
+GO
+
+INSERT [dbo].[S_ConnectSetting] ([SettingID], [CompanyCode], [SettingName], [SettingValue], [SettingDescription]) VALUES (N'RPFO_KEY', N'CP001', N'RPFO_KEY', N'ZNhdn2A+Ktt1r3I+5dMKrA==', NULL)
+GO
+INSERT [dbo].[S_ConnectSetting] ([SettingID], [CompanyCode], [SettingName], [SettingValue], [SettingDescription]) VALUES (N'RPFO_DARK_MODE', N'CP001', N'RPFO_DARK_MODE', N'pPLMU2ctboM=', N'')
+GO
+INSERT [dbo].[S_ConnectSetting] ([SettingID], [CompanyCode], [SettingName], [SettingValue], [SettingDescription]) VALUES (N'CENTRAL_DB_NAME', N'CP001', N'CENTRAL_DB_NAME', N'Au5o7SQ1GrxZOZzcsQdgZt30o495eWa/', N'')
+GO
+INSERT [dbo].[S_ConnectSetting] ([SettingID], [CompanyCode], [SettingName], [SettingValue], [SettingDescription]) VALUES (N'CENTRAL_SQL_IP', N'CP001', N'CENTRAL_SQL_IP', N'KhJ0IiEzfiK6MCWnkv0VBvHhFeGe3BfqnKtB2GvjzdM0RTxfNnGq9d30o495eWa/', N'')
+GO
+INSERT [dbo].[S_ConnectSetting] ([SettingID], [CompanyCode], [SettingName], [SettingValue], [SettingDescription]) VALUES (N'CENTRAL_SQL_PASS', N'CP001', N'CENTRAL_SQL_PASS', N'q/3J7HcbUXt1C1+scmZ8fw==', N'')
+GO
+INSERT [dbo].[S_ConnectSetting] ([SettingID], [CompanyCode], [SettingName], [SettingValue], [SettingDescription]) VALUES (N'CENTRAL_SQL_PORT', N'CP001', N'CENTRAL_SQL_PORT', N'3fSjj3l5Zr8=', N'')
+GO
+INSERT [dbo].[S_ConnectSetting] ([SettingID], [CompanyCode], [SettingName], [SettingValue], [SettingDescription]) VALUES (N'CENTRAL_SQL_USER', N'CP001', N'CENTRAL_SQL_USER', N'nyRUydBhdP0=', N'')
+GO
+INSERT [dbo].[S_ConnectSetting] ([SettingID], [CompanyCode], [SettingName], [SettingValue], [SettingDescription]) VALUES (N'RPFO_DEFAULT_STORE', N'CP001', N'RPFO_DEFAULT_STORE', N'CXLCpF+5m1o=', N'')
+GO
+
+-----
+
+/****** Object:  Table [dbo].[T_LogActions]    Script Date: 29/06/2022 10:27:52 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[T_LogActions](
+	[Internal_ID] [uniqueidentifier] NOT NULL,
+	[Log_Interface] [nvarchar](50) NULL,
+	[Log_Function] [nvarchar](50) NULL,
+	[Log_Description] [nvarchar](1000) NULL,
+	[Log_Contents] [nvarchar](max) NULL,
+	[Log_ContType] [nvarchar](50) NULL,
+	[Log_DataID] [nvarchar](250) NULL,
+	[Log_Status] [nvarchar](50) NULL,
+	[Log_RoleID] [nvarchar](50) NULL,
+	[Log_Address] [nvarchar](500) NULL,
+	[Log_Datetime] [datetime] NULL,
+	[Log_UserID] [nvarchar](50) NULL,
+	[Log_By] [nvarchar](50) NULL,
+	[Log_Type] [nvarchar](50) NULL,
+ CONSTRAINT [PK_T_LogActions] PRIMARY KEY CLUSTERED 
+(
+	[Internal_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[T_LogActions] ADD  CONSTRAINT [DF_T_LogActions_Internal_ID]  DEFAULT (newid()) FOR [Internal_ID]
+GO
+
+----------------
+ALTER TABLE T_SalesHeader
+ADD SyncCentralStatus char(1), SyncCentralDate datetime, SyncCentralMsg nvarchar(500);
+
+ALTER TABLE T_StoreSummary
+ADD SyncCentralStatus char(1), SyncCentralDate datetime;
+
+ALTER TABLE T_StoreDaily
+ADD SyncCentralStatus char(1), SyncCentralDate datetime;
+
+ALTER TABLE T_EndDate
+ADD SyncCentralStatus char(1), SyncCentralDate datetime;
+
+ALTER TABLE T_ShiftHeader
+ADD SyncCentralStatus char(1), SyncCentralDate datetime;
+
+ALTER TABLE T_ShiftSummary
+ADD SyncCentralStatus char(1), SyncCentralDate datetime;
+
+ALTER TABLE T_BankIn
+ADD SyncCentralStatus char(1), SyncCentralDate datetime;
+
+ALTER TABLE T_PickupAmount
+ADD SyncCentralStatus char(1), SyncCentralDate datetime;
+
+------------------------
+
+
+/****** Object:  UserDefinedTableType [dbo].[S_ConnectSetting]    Script Date: 29/06/2022 10:38:56 AM ******/
+CREATE TYPE [dbo].[S_ConnectSetting] AS TABLE(
+	[SettingID] [nvarchar](50) NOT NULL,
+	[CompanyCode] [nvarchar](50) NOT NULL,
+	[SettingName] [nvarchar](250) NULL,
+	[SettingValue] [nvarchar](500) NULL,
+	[SettingDescription] [nvarchar](250) NULL
+)
+GO
+
+/****** Object:  UserDefinedTableType [dbo].[S_PromoSchemaType]    Script Date: 29/06/2022 11:19:56 AM ******/
+CREATE TYPE [dbo].[S_PromoSchemaType] AS TABLE(
+	[SchemaId] [nvarchar](50) NOT NULL,
+	[CompanyCode] [nvarchar](50) NOT NULL,
+	[SchemaName] [nvarchar](250) NULL,
+	[CreatedBy] [nvarchar](50) NULL,
+	[CreatedOn] [datetime] NULL,
+	[ModifiedBy] [nvarchar](50) NULL,
+	[ModifiedOn] [datetime] NULL,
+	[Status] [char](1) NULL,
+	[AllowChain] [char](1) NULL,
+	[SAPPromoId] [nvarchar](50) NULL
+)
+GO
+/****** Object:  UserDefinedTableType [dbo].[S_SchemaLineType]    Script Date: 29/06/2022 11:19:56 AM ******/
+CREATE TYPE [dbo].[S_SchemaLineType] AS TABLE(
+	[SchemaId] [nvarchar](50) NOT NULL,
+	[CompanyCode] [nvarchar](50) NOT NULL,
+	[LineNum] [int] NOT NULL,
+	[PromoId] [nvarchar](50) NULL,
+	[Description] [nvarchar](250) NULL,
+	[Priority] [int] NULL,
+	[IsApply] [char](1) NULL
+)
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[SYNC_I_T_LogActions]    Script Date: 29/06/2022 10:38:56 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_I_T_LogActions] 
+	-- Add the parameters for the stored procedure here
+	@Log_Interface NVARCHAR(50),
+	@Log_Function NVARCHAR(50),
+	@Log_Description NVARCHAR(1000),
+	@Log_Contents NVARCHAR(MAX),
+	@Log_ContType NVARCHAR(50),
+	@Log_DataID NVARCHAR(250),
+	@Log_Status nvarchar(50),
+	@Log_RoleID nvarchar(50),
+	@Log_Address nvarchar(500),
+	@Log_UserID nvarchar(50),
+	@Log_By nvarchar(50),
+	@Log_Type nvarchar(50)
+AS
+BEGIN TRANSACTION
+	BEGIN
+		SET NOCOUNT ON;
+		DECLARE @ErrCode int = 0 -- Error code
+		DECLARE @ErrMsg nvarchar(1000) = 'Save Log Action successfully.' -- Error message
+		DECLARE @RCount int = 0
+
+		--DECLARE @T_LogActionType T_LogActionType
+
+		-- INSERT NEW OWHS ====================================================================================================
+		INSERT INTO [dbo].[T_LogActions]
+			   ([Log_Interface]
+			   ,[Log_Function]
+			   ,[Log_Description]
+			   ,[Log_Contents]
+			   ,[Log_ContType]
+			   ,[Log_DataID]
+			   ,[Log_Status]
+			   ,[Log_RoleID]
+			   ,[Log_Address]
+			   ,[Log_Datetime]
+			   ,[Log_UserID]
+			   ,[Log_By]
+			   ,[Log_Type])
+		 VALUES
+			   (@Log_Interface
+			   ,@Log_Function
+			   ,@Log_Description
+			   ,@Log_Contents
+			   ,@Log_ContType
+			   ,@Log_DataID
+			   ,@Log_Status
+			   ,@Log_RoleID
+			   ,@Log_Address
+			   ,GETDATE()
+			   ,@Log_UserID
+			   ,@Log_By
+			   ,@Log_Type)
+
+		If @@ERROR <> 0 
+			Begin
+				Set @ErrCode = @@ERROR; Set @ErrMsg = ERROR_MESSAGE();
+				Goto HANDLE_ERROR --> Roll back when execute failed ...
+			End
+		-- ==========================================================================================================================
+	END 
+-- Commit transaction ===============================================================================================================
+COMMIT TRANSACTION
+	SELECT @ErrCode AS ErrCode, @ErrMsg AS ErrMsg, @RCount AS rcount;
+	RETURN @@ROWCOUNT
+-- Error transaction ================================================================================================================
+HANDLE_ERROR:
+	ROLLBACK TRANSACTION
+	SELECT @ErrCode AS ErrCode, @ErrMsg AS ErrMsg, @@ROWCOUNT AS rcount;
+	RETURN @@ERROR
+--===================================================================================================================================
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_IU_S_ConnectSetting]    Script Date: 29/06/2022 10:38:56 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_IU_S_ConnectSetting]
+	-- Add the parameters for the stored procedure here
+	@S_ConnectSetting S_ConnectSetting READONLY
+AS
+BEGIN TRANSACTION
+	BEGIN
+
+		--DECLARE @S_ConnectSetting S_ConnectSetting
+		
+		-- SET NOCOUNT ON added to prevent extra result sets from
+		-- interfering with SELECT statements.
+		SET NOCOUNT ON;
+		DECLARE @ErrCode int = 0 -- Error code
+		DECLARE @ErrMsg nvarchar(1000) = 'Save Setting successfully.' -- Error message
+		DECLARE @RCount int = 0
+
+
+		-- Get Data Header Insert
+		SELECT H1.SettingID, H1.CompanyCode INTO #T_ConnectSetting_I
+		FROM @S_ConnectSetting H1
+		LEFT JOIN S_ConnectSetting H2 
+			ON H1.SettingID = H2.SettingID AND H1.CompanyCode = H2.CompanyCode
+		WHERE H2.SettingID IS NULL
+
+		-- Get Data Header Update
+		SELECT H1.SettingID, H1.CompanyCode INTO #T_ConnectSetting_U
+		FROM @S_ConnectSetting H1
+		INNER JOIN S_ConnectSetting H2 
+			ON H1.SettingID = H2.SettingID AND H1.CompanyCode = H2.CompanyCode
+
+		SELECT @RCount  = COUNT(*) from @S_ConnectSetting;
+		
+		-- Insert new Invoice Header
+		INSERT INTO [dbo].[S_ConnectSetting]
+           ([SettingID]
+           ,[CompanyCode]
+           ,[SettingName]
+           ,[SettingValue]
+           ,[SettingDescription]
+		   )
+		SELECT H1.SettingID
+           ,H1.CompanyCode
+           ,H1.SettingName
+           ,H1.SettingValue
+		   ,H1.SettingDescription
+		FROM @S_ConnectSetting H1
+		INNER JOIN #T_ConnectSetting_I H2
+			ON H1.SettingID = H2.SettingID AND H1.CompanyCode = H2.CompanyCode
+		IF @@ERROR <> 0 
+			BEGIN
+				SET @ErrCode = @@ERROR; SET @ErrMsg = ERROR_MESSAGE();
+				GOTO HANDLE_ERROR --> Roll back when execute failed ...
+			END
+		------
+		--	Update Invoice Header
+		UPDATE [dbo].[S_ConnectSetting]
+		   SET [SettingID] = H1.SettingID
+			  ,[CompanyCode] = H1.CompanyCode
+			  ,[SettingName] = H1.SettingName
+			  ,[SettingValue] = H1.SettingValue
+			  ,[SettingDescription] = H1.SettingDescription
+		FROM @S_ConnectSetting H1
+		INNER JOIN #T_ConnectSetting_U H2
+			ON H1.SettingID = H2.SettingID AND H1.CompanyCode = H2.CompanyCode
+		WHERE H1.CompanyCode = [S_ConnectSetting].CompanyCode AND H1.SettingID = [S_ConnectSetting].SettingID
+		IF @@ERROR <> 0 
+			BEGIN
+				SET @ErrCode = @@ERROR; SET @ErrMsg = ERROR_MESSAGE();
+				GOTO HANDLE_ERROR --> Roll back when execute failed ...
+			END
+		------
+
+
+	END
+-- Commit transaction ===============================================================================================================
+COMMIT TRANSACTION
+	SELECT @ErrCode AS ErrCode, @ErrMsg AS ErrMsg, @RCount AS rcount;
+	RETURN @@ROWCOUNT
+-- Error transaction ================================================================================================================
+HANDLE_ERROR:
+	ROLLBACK TRANSACTION
+	SELECT @ErrCode AS ErrCode, @ErrMsg AS ErrMsg, @@ROWCOUNT AS rcount;
+	RETURN @@ERROR
+--===================================================================================================================================
+
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_IU_S_PromotionFromCentral]    Script Date: 29/06/2022 10:38:56 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_IU_S_PromotionFromCentral]
+	-- Add the parameters for the stored procedure here
+	@UserID NVARCHAR(25),
+	@S_PromoHeader S_PromoHeaderType READONLY,
+	@S_PromoBuy S_PromoBuyType READONLY,
+	@S_PromoGet S_PromoGetType READONLY,
+	@S_PromoStore S_PromoStoreType READONLY,
+	@S_PromoCustomer S_PromoCustomerType READONLY,
+	@S_PromoBuyOTGroup S_PromoOTGroupType READONLY,
+	@S_PromoGetOTGroup S_PromoOTGroupType READONLY
+AS
+BEGIN TRANSACTION
+	BEGIN
+
+		--DECLARE @S_PromoHeader S_PromoHeaderType
+		--DECLARE @S_PromoBuy S_PromoBuyType
+		--DECLARE @S_PromoGet S_PromoGetType
+		--DECLARE @S_PromoStore S_PromoStoreType
+		--DECLARE @S_PromoCustomer S_PromoCustomerType
+		--DECLARE @S_PromoBuyOTGroup S_PromoOTGroupType
+		--DECLARE @S_PromoGetOTGroup S_PromoOTGroupType
+		
+		-- SET NOCOUNT ON added to prevent extra result sets from
+		-- interfering with SELECT statements.
+		SET NOCOUNT ON;
+		DECLARE @ErrCode int = 0 -- Error code
+		DECLARE @ErrMsg nvarchar(1000) = 'Save Promotion successfully.' -- Error message
+		DECLARE @RCount int = 0
+
+		-- PROMOTION HEADER ===========================================================================================================
+
+		-- Get Data Insert
+		SELECT H1.PromoId, H1.CompanyCode INTO #S_PromoHeader_I
+		FROM @S_PromoHeader H1
+		LEFT JOIN S_PromoHeader H2 
+			ON H1.PromoId = H2.PromoId AND H1.CompanyCode = H2.CompanyCode
+		WHERE H2.PromoId IS NULL
+
+		-- Get Data Update
+		SELECT H1.PromoId, H1.CompanyCode INTO #S_PromoHeader_U
+		FROM @S_PromoHeader H1
+		INNER JOIN S_PromoHeader H2 
+			ON H1.PromoId = H2.PromoId AND H1.CompanyCode = H2.CompanyCode
+
+		SELECT @RCount  = COUNT(*) from @S_PromoHeader;
+		
+		-- INSERT NEW PROMO HEADER ====================================================================================================
+		INSERT INTO [dbo].[S_PromoHeader]
+			   ([PromoId]
+			   ,[CompanyCode]
+			   ,[PromoType]
+			   ,[PromoName]
+			   ,[CustomerType]
+			   ,[ValidDateFrom]
+			   ,[ValidDateTo]
+			   ,[ValidTimeFrom]
+			   ,[ValidTimeTo]
+			   ,[IsMon]
+			   ,[IsTue]
+			   ,[IsWed]
+			   ,[IsThu]
+			   ,[IsFri]
+			   ,[IsSat]
+			   ,[IsSun]
+			   ,[TotalBuyFrom]
+			   ,[TotalBuyTo]
+			   ,[TotalGetType]
+			   ,[TotalGetValue]
+			   ,[MaxTotalGetValue]
+			   ,[IsCombine]
+			   ,[IsVoucher]
+			   ,[CreatedBy]
+			   ,[CreatedOn]
+			   ,[ModifiedBy]
+			   ,[ModifiedOn]
+			   ,[Status]
+			   ,[SAPPromoId]
+			   ,[SAPBonusBuyId]
+			   --,[SchemaId]
+			   ,[SyncDate]
+			   ,[SyncSource]
+			   ,[MaxQtyByReceipt]
+			   ,[MaxQtyByStore])
+		SELECT H1.[PromoId]
+			   ,H1.[CompanyCode]
+			   ,H1.[PromoType]
+			   ,H1.[PromoName]
+			   ,H1.[CustomerType]
+			   ,H1.[ValidDateFrom]
+			   ,H1.[ValidDateTo]
+			   ,H1.[ValidTimeFrom]
+			   ,H1.[ValidTimeTo]
+			   ,H1.[IsMon]
+			   ,H1.[IsTue]
+			   ,H1.[IsWed]
+			   ,H1.[IsThu]
+			   ,H1.[IsFri]
+			   ,H1.[IsSat]
+			   ,H1.[IsSun]
+			   ,H1.[TotalBuyFrom]
+			   ,H1.[TotalBuyTo] --CASE WHEN ISNULL(H1.[TotalBuyFrom], 0) <> 0 AND ISNULL(H1.[TotalBuyTo], 0) = 0 THEN 99999999 ELSE H1.[TotalBuyTo] END AS 'TotalBuyTo'
+			   ,H1.[TotalGetType]
+			   ,H1.[TotalGetValue]
+			   ,H1.[MaxTotalGetValue]
+			   ,H1.[IsCombine]
+			   ,H1.[IsVoucher]
+			   ,H1.[CreatedBy]
+			   ,H1.[CreatedOn]
+			   ,H1.[ModifiedBy]
+			   ,H1.[ModifiedOn]
+			   ,H1.[Status]
+			   ,H1.[SAPPromoId]
+			   ,H1.[SAPBonusBuyId]
+			   --,H1.[SchemaId]
+			   ,GETDATE()
+			   ,@UserID
+			   ,H1.[MaxQtyByReceipt]
+			   ,H1.[MaxQtyByStore]
+		FROM @S_PromoHeader H1
+		INNER JOIN #S_PromoHeader_I H2
+			ON H1.PromoId = H2.PromoId AND H1.CompanyCode = H2.CompanyCode
+		IF @@ERROR <> 0 
+			BEGIN
+				SET @ErrCode = @@ERROR; SET @ErrMsg = ERROR_MESSAGE();
+				GOTO HANDLE_ERROR --> Roll back when execute failed ...
+			END
+		-- ============================================================================================================================
+		-- UPDATE PROMO HEADER ========================================================================================================
+		UPDATE [dbo].[S_PromoHeader]
+		   SET [PromoId] = H1.[PromoId]
+			  ,[CompanyCode] = H1.[CompanyCode]
+			  ,[PromoType] = H1.[PromoType]
+			  ,[PromoName] = H1.[PromoName]
+			  ,[CustomerType] = H1.[CustomerType]
+			  ,[ValidDateFrom] = H1.[ValidDateFrom]
+			  ,[ValidDateTo] = H1.[ValidDateTo]
+			  ,[ValidTimeFrom] = H1.[ValidTimeFrom]
+			  ,[ValidTimeTo] = H1.[ValidTimeTo]
+			  ,[IsMon] = H1.[IsMon]
+			  ,[IsTue] = H1.[IsTue]
+			  ,[IsWed] = H1.[IsWed]
+			  ,[IsThu] = H1.[IsThu]
+			  ,[IsFri] = H1.[IsFri]
+			  ,[IsSat] = H1.[IsSat]
+			  ,[IsSun] = H1.[IsSun]
+			  ,[TotalBuyFrom] = H1.[TotalBuyFrom]
+			  ,[TotalBuyTo] = H1.[TotalBuyTo] --CASE WHEN ISNULL(H1.[TotalBuyFrom], 0) <> 0 AND ISNULL(H1.[TotalBuyTo], 0) = 0 THEN 99999999 ELSE H1.[TotalBuyTo] END
+			  ,[TotalGetType] = H1.[TotalGetType]
+			  ,[TotalGetValue] = H1.[TotalGetValue]
+			  ,[MaxTotalGetValue] = H1.[MaxTotalGetValue]
+			  ,[IsCombine] = H1.[IsCombine]
+			  ,[IsVoucher] = H1.[IsVoucher]
+			  --,[CreatedBy] = H1.[CreatedBy]
+			  --,[CreatedOn] = H1.[CreatedOn]
+			  ,[ModifiedBy] = H1.[ModifiedBy]
+			  ,[ModifiedOn] = H1.[ModifiedOn]
+			  ,[Status] = H1.[Status]
+			  ,[SAPPromoId] = H1.[SAPPromoId]
+			  ,[SAPBonusBuyId] = H1.[SAPBonusBuyId]
+			  --,[SchemaId] = H1.[SchemaId]
+			  ,[SyncDate] = GETDATE()
+			  ,[SyncSource] = @UserID
+			  ,[MaxQtyByReceipt] = H1.[MaxQtyByReceipt]
+			  ,[MaxQtyByStore] = H1.[MaxQtyByStore]
+		FROM @S_PromoHeader H1
+		INNER JOIN #S_PromoHeader_U H2
+			ON H1.PromoId = H2.PromoId AND H1.CompanyCode = H2.CompanyCode
+		WHERE H1.PromoId = [S_PromoHeader].PromoId AND H1.CompanyCode = [S_PromoHeader].CompanyCode
+		IF @@ERROR <> 0 
+			BEGIN
+				SET @ErrCode = @@ERROR; SET @ErrMsg = ERROR_MESSAGE();
+				GOTO HANDLE_ERROR --> Roll back when execute failed ...
+			END
+		-- ============================================================================================================================
+
+		-- PROMO BUY ==================================================================================================================
+
+		IF (SELECT COUNT(1) FROM @S_PromoBuy) = 0 --(SELECT COUNT(PromoId) FROM @S_PromoBuy) = 0
+			BEGIN
+				GOTO CONTI1
+			END
+
+		--DELETE S_PromoBuy WHERE PromoId IN (SELECT D.PromoId FROM @S_PromoBuy D)
+
+		DELETE P
+		FROM S_PromoBuy P 
+		INNER JOIN @S_PromoBuy S ON P.CompanyCode = S.CompanyCode AND P.PromoId = S.PromoId
+		WHERE P.PromoId = S.PromoId AND P.CompanyCode = S.CompanyCode
+
+		-- INSERT NEW PROMO BUY =======================================================================================================
+		INSERT INTO [dbo].[S_PromoBuy]
+			   ([PromoId]
+			   ,[CompanyCode]
+			   ,[LineNum]
+			   ,[LineType]
+			   ,[LineCode]
+			   ,[LineName]
+			   ,[LineUom]
+			   ,[ValueType]
+			   ,[Condition_1]
+			   ,[Value_1]
+			   ,[Condition_2]
+			   ,[Value_2])
+		SELECT P.[PromoId]
+			   ,P.[CompanyCode]
+			   ,P.[LineNum]
+			   ,P.[LineType]
+			   ,P.[LineCode]
+			   ,P.[LineName]
+			   ,P.[LineUom]
+			   ,P.[ValueType]
+			   ,P.[Condition_1]
+			   ,P.[Value_1]
+			   ,P.[Condition_2]
+			   ,P.[Value_2]
+		FROM @S_PromoBuy P
+		IF @@ERROR <> 0 
+			BEGIN
+				SET @ErrCode = @@ERROR; SET @ErrMsg = ERROR_MESSAGE();
+				GOTO HANDLE_ERROR --> Roll back when execute failed ...
+			END
+
+		CONTI1:
+
+		-- PROMO GET ==================================================================================================================
+
+		IF (SELECT COUNT(1) FROM @S_PromoGet) = 0 --(SELECT COUNT(PromoId) FROM @S_PromoGet) = 0
+			BEGIN
+				GOTO CONTI2
+			END
+
+		DELETE P
+		FROM S_PromoGet P 
+		INNER JOIN @S_PromoGet S ON P.CompanyCode = S.CompanyCode AND P.PromoId = S.PromoId
+		WHERE P.PromoId = S.PromoId AND P.CompanyCode = S.CompanyCode
+
+		-- INSERT NEW PROMO GET =======================================================================================================
+		INSERT INTO [dbo].[S_PromoGet]
+			   ([PromoId]
+			   ,[CompanyCode]
+			   ,[LineNum]
+			   ,[LineType]
+			   ,[LineCode]
+			   ,[LineName]
+			   ,[LineUom]
+			   ,[ConditionType]
+			   ,[Condition_1]
+			   ,[Value_1]
+			   ,[Condition_2]
+			   ,[Value_2]
+			   ,[ValueType]
+			   ,[GetValue]
+			   ,[MaxAmtDis]
+			   ,[MaxQtyDis])
+		SELECT P.[PromoId]
+			   ,P.[CompanyCode]
+			   ,P.[LineNum]
+			   ,P.[LineType]
+			   ,P.[LineCode]
+			   ,P.[LineName]
+			   ,P.[LineUom]
+			   ,P.[ConditionType]
+			   ,P.[Condition_1]
+			   ,P.[Value_1]
+			   ,P.[Condition_2]
+			   ,P.[Value_2]
+			   ,P.[ValueType]
+			   ,P.[GetValue]
+			   ,P.[MaxAmtDis]
+			   ,P.[MaxQtyDis]
+		FROM @S_PromoGet P
+		IF @@ERROR <> 0 
+			BEGIN
+				SET @ErrCode = @@ERROR; SET @ErrMsg = ERROR_MESSAGE();
+				GOTO HANDLE_ERROR --> Roll back when execute failed ...
+			END
+
+		CONTI2:
+
+		-- PROMO STORE ==================================================================================================================
+
+		IF (SELECT COUNT(1) FROM @S_PromoStore) = 0 --(SELECT COUNT(PromoId) FROM @S_PromoStore) = 0
+			BEGIN
+				GOTO CONTI3
+			END
+
+		DELETE P
+		FROM S_PromoStore P 
+		INNER JOIN @S_PromoStore S ON P.CompanyCode = S.CompanyCode AND P.PromoId = S.PromoId
+		WHERE P.PromoId = S.PromoId AND P.CompanyCode = S.CompanyCode
+
+		-- INSERT NEW PROMO STORE =======================================================================================================
+		INSERT INTO [dbo].[S_PromoStore]
+			   ([PromoId]
+			   ,[CompanyCode]
+			   ,[LineNum]
+			   ,[StoreValue])
+		SELECT P.[PromoId]
+			   ,P.[CompanyCode]
+			   ,P.[LineNum]
+			   ,P.[StoreValue]
+		FROM @S_PromoStore P
+		IF @@ERROR <> 0 
+			BEGIN
+				SET @ErrCode = @@ERROR; SET @ErrMsg = ERROR_MESSAGE();
+				GOTO HANDLE_ERROR --> Roll back when execute failed ...
+			END
+
+		CONTI3:
+
+		-- PROMO CUSTOMER ==================================================================================================================
+
+		IF (SELECT COUNT(1) FROM @S_PromoCustomer) = 0 --(SELECT COUNT(PromoId) FROM @S_PromoCustomer) = 0
+			BEGIN
+				GOTO CONTI4
+			END
+
+		DELETE P
+		FROM S_PromoCustomer P 
+		INNER JOIN @S_PromoCustomer S ON P.CompanyCode = S.CompanyCode AND P.PromoId = S.PromoId
+		WHERE P.PromoId = S.PromoId AND P.CompanyCode = S.CompanyCode
+
+		-- INSERT NEW PROMO CUSTOMER =======================================================================================================
+		INSERT INTO [dbo].[S_PromoCustomer]
+			   ([PromoId]
+			   ,[CompanyCode]
+			   ,[LineNum]
+			   ,[CustomerValue]
+			   ,[CustomerType])
+		SELECT P.[PromoId]
+			   ,P.[CompanyCode]
+			   ,P.[LineNum]
+			   ,P.[CustomerValue]
+			   ,P.[CustomerType]
+		FROM @S_PromoCustomer P
+		IF @@ERROR <> 0 
+			BEGIN
+				SET @ErrCode = @@ERROR; SET @ErrMsg = ERROR_MESSAGE();
+				GOTO HANDLE_ERROR --> Roll back when execute failed ...
+			END
+
+		CONTI4:
+
+		-- PROMO BUY OT GROUP =========================================================================================================
+
+		IF (SELECT COUNT(1) FROM @S_PromoBuyOTGroup) = 0 --OR (SELECT COUNT(PromoId) FROM @S_PromoBuyOTGroup) = 0
+			BEGIN
+				GOTO CONTI5
+			END
+
+		DELETE P
+		FROM S_PromoBuyOTGroup P 
+		INNER JOIN @S_PromoBuyOTGroup S ON P.CompanyCode = S.CompanyCode AND P.PromoId = S.PromoId
+		WHERE P.PromoId = S.PromoId AND P.CompanyCode = S.CompanyCode
+
+		-- INSERT NEW PROMO BUY OT =======================================================================================================
+		INSERT INTO [dbo].[S_PromoBuyOTGroup]
+			   ([PromoId]
+			   ,[CompanyCode]
+			   ,[GroupID]
+			   ,[LineNum]
+			   ,[LineType]
+			   ,[LineCode]
+			   ,[LineName]
+			   ,[LineUoM])
+		SELECT P.[PromoId]
+			   ,P.[CompanyCode]
+			   ,P.[GroupID]
+			   ,P.[LineNum]
+			   ,P.[LineType]
+			   ,P.[LineCode]
+			   ,P.[LineName]
+			   ,P.[LineUoM]
+		FROM @S_PromoBuyOTGroup P
+		IF @@ERROR <> 0 
+			BEGIN
+				SET @ErrCode = @@ERROR; SET @ErrMsg = ERROR_MESSAGE();
+				GOTO HANDLE_ERROR --> Roll back when execute failed ...
+			END
+
+		CONTI5:
+
+		-- PROMO GET OT GROUP =========================================================================================================
+
+		IF (SELECT COUNT(1) FROM @S_PromoGetOTGroup) = 0 --OR (SELECT COUNT(PromoId) FROM @S_PromoGetOTGroup) = 0
+			BEGIN
+				GOTO CONTI6
+			END
+
+		DELETE P
+		FROM S_PromoGetOTGroup P 
+		INNER JOIN @S_PromoGetOTGroup S ON P.CompanyCode = S.CompanyCode AND P.PromoId = S.PromoId
+		WHERE P.PromoId = S.PromoId AND P.CompanyCode = S.CompanyCode
+
+		-- INSERT NEW PROMO GET OT ====================================================================================================
+		INSERT INTO [dbo].[S_PromoGetOTGroup]
+			   ([PromoId]
+			   ,[CompanyCode]
+			   ,[GroupID]
+			   ,[LineNum]
+			   ,[LineType]
+			   ,[LineCode]
+			   ,[LineName]
+			   ,[LineUoM])
+		SELECT P.[PromoId]
+			   ,P.[CompanyCode]
+			   ,P.[GroupID]
+			   ,P.[LineNum]
+			   ,P.[LineType]
+			   ,P.[LineCode]
+			   ,P.[LineName]
+			   ,P.[LineUoM]
+		FROM @S_PromoGetOTGroup P
+		IF @@ERROR <> 0 
+			BEGIN
+				SET @ErrCode = @@ERROR; SET @ErrMsg = ERROR_MESSAGE();
+				GOTO HANDLE_ERROR --> Roll back when execute failed ...
+			END
+
+		CONTI6:
+
+		------ AUTO CREATE SCHEMA DATA==================================================================================================
+		----DECLARE @TableSchema AS TABLE
+		----(
+		----	SAPPromoId NVARCHAR(50) 
+		----)
+
+		----DECLARE @TableSchemaTest AS TABLE
+		----(
+		----	SAPPromoId NVARCHAR(50) 
+		----)
+
+		----INSERT INTO @TableSchema
+		----SELECT DISTINCT SAPPromoId
+		----FROM @S_PromoHeader
+		----WHERE ISNULL(SAPPromoId, '') <> ''
+
+		----IF (SELECT COUNT(1) FROM @TableSchema) = 0 --OR (SELECT COUNT(PromoId) FROM @S_PromoGetOTGroup) = 0
+		----	BEGIN
+		----		GOTO CONTI7
+		----	END
+
+		----DECLARE @SAPPromoId NVARCHAR(50) 
+
+		----DECLARE Schema_cursor CURSOR  FOR SELECT DISTINCT SAPPromoId FROM @TableSchema
+		----OPEN Schema_cursor  
+		----FETCH NEXT FROM Schema_cursor INTO @SAPPromoId
+
+		----WHILE @@FETCH_STATUS = 0 
+		----	BEGIN
+				
+		----		--INSERT INTO @TableSchemaTest (SAPPromoId) 
+		----		--SELECT TOP 1 SchemaId 
+		----		--FROM S_PromoSchema 
+		----		--WHERE SAPPromoId = @SAPPromoId
+
+		----		DECLARE @NewId nvarchar(50) = (SELECT TOP 1 SchemaId FROM S_PromoSchema WHERE SAPPromoId = @SAPPromoId)
+
+		----		IF ISNULL(@NewId, '') = ''
+		----			BEGIN 
+		----				SET @NewId = dbo.fnc_AutoGenDocumentCode('PS','CP001','')
+
+		----				INSERT INTO [dbo].[S_PromoSchema]
+		----					([SchemaId]
+		----					,[CompanyCode]
+		----					,[SchemaName]
+		----					,[CreatedBy]
+		----					,[CreatedOn]
+		----					--,[ModifiedBy]
+		----					--,[ModifiedOn]
+		----					,[Status]
+		----					,[AllowChain]
+		----					,[SAPPromoId])
+		----				SELECT DISTINCT @NewId AS 'SchemaId'
+		----					,P.CompanyCode
+		----					,'SchemaName' AS 'SchemaName'
+		----					,@UserID
+		----					,GETDATE()
+		----					--,P.ModifiedBy
+		----					--,P.ModifiedOn
+		----					,'Y' AS 'Status'
+		----					,'Y' AS 'AllowChain'
+		----					,P.SAPPromoId
+		----				FROM S_PromoHeader P WITH(NOLOCK)
+		----				WHERE P.SAPPromoId = @SAPPromoId
+
+		----			END
+		----		ELSE
+		----			BEGIN
+		----				UPDATE [dbo].[S_PromoSchema]
+		----				   SET [SchemaName] = CASE WHEN ISNULL([S_PromoSchema].SchemaName, '') = '' THEN 'SchemaName' ELSE [S_PromoSchema].SchemaName END
+		----					  --,[CompanyCode] = P.CompanyCode
+		----					  --,[CreatedBy] = <CreatedBy, nvarchar(50),>
+		----					  --,[CreatedOn] = <CreatedOn, datetime,>
+		----					  ,[ModifiedBy] = @UserID
+		----					  ,[ModifiedOn] = GETDATE()
+		----					  --,[Status] = 'Y'
+		----					  --,[AllowChain] = 'Y'
+		----					  ,[SAPPromoId] = @SAPPromoId
+		----				--FROM S_PromoHeader P WITH(NOLOCK)
+		----				WHERE [S_PromoSchema].SchemaId = @NewId
+		----			END
+
+		----		--------
+
+		----		DELETE S_SchemaLine WHERE SchemaId = (SELECT TOP 1 SchemaId FROM S_PromoSchema WHERE SAPPromoId = @SAPPromoId)
+
+		----		INSERT INTO [dbo].[S_SchemaLine]
+		----			([SchemaId]
+		----			,[CompanyCode]
+		----			,[LineNum]
+		----			,[PromoId]
+		----			,[Description]
+		----			,[Priority]
+		----			,[IsApply])
+		----		SELECT @NewId AS 'SchemaId'
+		----			,P.CompanyCode
+		----			,ROW_NUMBER() OVER(ORDER BY @NewId, P.CreatedOn DESC) AS 'LineNum'
+		----			,P.PromoId
+		----			,P.PromoName
+		----			,ROW_NUMBER() OVER(ORDER BY @NewId, P.CreatedOn DESC) AS 'Priority'
+		----			,'Y' AS 'IsApply'
+		----		FROM S_PromoHeader P WITH(NOLOCK) 
+		----		WHERE SAPPromoId = @SAPPromoId
+		----		ORDER BY P.CreatedOn DESC
+
+		----		UPDATE S_PromoHeader SET IsCombine = 'Y' 
+		----		WHERE SAPPromoId = @SAPPromoId
+
+		----		FETCH NEXT FROM Schema_cursor INTO @SAPPromoId
+		----	END
+
+		
+		----UPDATE S_PromoHeader SET IsCombine = 'N'
+		----FROM S_PromoHeader H
+		----FULL OUTER JOIN S_SchemaLine L ON L.CompanyCode = H.CompanyCode AND L.PromoId = H.PromoId
+		----WHERE L.SchemaId IS NULL
+
+		----CLOSE Schema_cursor  
+		----DEALLOCATE Schema_cursor
+
+		------SELECT * FROM @TableSchemaTest
+		------RETURN
+
+		----CONTI7:
+
+		------==========================================================================================================================
+
+		---- AUTO CREATE SCHEMA DATA DEFAULT==================================================================================================
+
+		--DECLARE @TablePromo AS TABLE
+		--(
+		--	CompanyCode NVARCHAR(50),
+		--	SAPBonusBuyId NVARCHAR(50) 
+		--)
+
+		--INSERT INTO @TablePromo
+		--SELECT DISTINCT CompanyCode, SAPBonusBuyId
+		--FROM S_PromoHeader
+		--WHERE ISNULL(SAPBonusBuyId, '') <> '' AND [Status] = 'Y'
+
+		--IF (SELECT COUNT(1) FROM @TablePromo) = 0 --OR (SELECT COUNT(PromoId) FROM @S_PromoGetOTGroup) = 0
+		--	BEGIN
+		--		GOTO CONTI7
+		--	END
+
+		--DECLARE @NewId nvarchar(50) = (SELECT TOP 1 SchemaId FROM S_PromoSchema WHERE SchemaName = 'SchemaDefault')
+
+		--IF ISNULL(@NewId, '') = ''
+		--	BEGIN 
+		--		SET @NewId = dbo.fnc_AutoGenDocumentCode('PS','CP001','')
+
+		--		INSERT INTO [dbo].[S_PromoSchema]
+		--			([SchemaId]
+		--			,[CompanyCode]
+		--			,[SchemaName]
+		--			,[CreatedBy]
+		--			,[CreatedOn]
+		--			--,[ModifiedBy]
+		--			--,[ModifiedOn]
+		--			,[Status]
+		--			,[AllowChain]
+		--			,[SAPPromoId])
+		--		SELECT DISTINCT TOP 1 @NewId AS 'SchemaId'
+		--			,P.CompanyCode
+		--			,'SchemaDefault' AS 'SchemaName'
+		--			,@UserID
+		--			,GETDATE()
+		--			--,P.ModifiedBy
+		--			--,P.ModifiedOn
+		--			,'Y' AS 'Status'
+		--			,'Y' AS 'AllowChain'
+		--			,NULL--P.SAPPromoId
+		--		FROM @TablePromo P --WITH(NOLOCK)
+		--		--WHERE ISNULL(P.SAPBonusBuyId, '') <> ''
+
+		--	END
+		--ELSE
+		--	BEGIN
+		--		UPDATE [dbo].[S_PromoSchema]
+		--			SET [SchemaName] = CASE WHEN ISNULL([S_PromoSchema].SchemaName, '') = '' THEN 'SchemaDefault' ELSE [S_PromoSchema].SchemaName END
+		--				--,[CompanyCode] = P.CompanyCode
+		--				--,[CreatedBy] = <CreatedBy, nvarchar(50),>
+		--				--,[CreatedOn] = <CreatedOn, datetime,>
+		--				,[ModifiedBy] = @UserID
+		--				,[ModifiedOn] = GETDATE()
+		--				--,[Status] = 'Y'
+		--				--,[AllowChain] = 'Y'
+		--				--,[SAPPromoId] = @SAPPromoId
+		--		--FROM S_PromoHeader P WITH(NOLOCK)
+		--		WHERE [S_PromoSchema].SchemaId = @NewId
+		--	END
+
+		----------
+
+		--DELETE S_SchemaLine WHERE SchemaId = @NewId	--AND PromoId IN (SELECT SAPBonusBuyId FROM @TablePromo)
+
+		--INSERT INTO [dbo].[S_SchemaLine]
+		--	([SchemaId]
+		--	,[CompanyCode]
+		--	,[LineNum]
+		--	,[PromoId]
+		--	,[Description]
+		--	,[Priority]
+		--	,[IsApply])
+		--SELECT @NewId AS 'SchemaId'
+		--	,P.CompanyCode
+		--	,ROW_NUMBER() OVER(ORDER BY @NewId, P.CreatedOn DESC) AS 'LineNum'
+		--	,P.PromoId
+		--	,P.PromoName
+		--	,ROW_NUMBER() OVER(ORDER BY @NewId, P.CreatedOn DESC) AS 'Priority'
+		--	,'Y' AS 'IsApply'
+		--FROM S_PromoHeader P WITH(NOLOCK) 
+		--INNER JOIN @TablePromo TP ON P.SAPBonusBuyId = TP.SAPBonusBuyId
+		--ORDER BY P.CreatedOn DESC
+
+		--UPDATE S_PromoHeader SET IsCombine = 'Y' 
+		--WHERE SAPBonusBuyId IN (SELECT SAPBonusBuyId FROM @TablePromo)
+		
+		--UPDATE S_PromoHeader SET IsCombine = 'N'
+		--FROM S_PromoHeader H
+		--FULL OUTER JOIN S_SchemaLine L ON L.CompanyCode = H.CompanyCode AND L.PromoId = H.PromoId
+		--WHERE L.SchemaId IS NULL
+
+
+		--CONTI7:
+
+		----==========================================================================================================================
+
+
+	END
+-- Commit transaction ===============================================================================================================
+COMMIT TRANSACTION
+	SELECT @ErrCode AS ErrCode, @ErrMsg AS ErrMsg, @RCount AS rcount;
+	RETURN @@ROWCOUNT
+-- Error transaction ================================================================================================================
+HANDLE_ERROR:
+	ROLLBACK TRANSACTION
+	SELECT @ErrCode AS ErrCode, @ErrMsg AS ErrMsg, @@ROWCOUNT AS rcount;
+	RETURN @@ERROR
+--===================================================================================================================================
+
+GO
+
+/****** Object:  StoredProcedure [dbo].[SYNC_IU_S_SchemaFromCentral]    Script Date: 2/13/2023 12:05:38 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_IU_S_SchemaFromCentral]
+	-- Add the parameters for the stored procedure here
+	@UserID NVARCHAR(25),
+	@S_PromoSchema S_PromoSchemaType READONLY,
+	@S_SchemaLine S_SchemaLineType READONLY
+AS
+BEGIN TRANSACTION
+	BEGIN
+
+		--DECLARE @S_PromoSchema S_PromoSchemaType
+		--DECLARE @S_SchemaLine S_SchemaLineType
+		
+		-- SET NOCOUNT ON added to prevent extra result sets from
+		-- interfering with SELECT statements.
+		SET NOCOUNT ON;
+		DECLARE @ErrCode int = 0 -- Error code
+		DECLARE @ErrMsg nvarchar(1000) = 'Save Schema successfully.' -- Error message
+		DECLARE @RCount int = 0
+
+		-- PROMOTION HEADER ===========================================================================================================
+
+		-- Get Data Insert
+		SELECT H1.SchemaId, H1.CompanyCode INTO #S_PromoHeader_I
+		FROM @S_PromoSchema H1
+		LEFT JOIN S_PromoSchema H2 
+			ON H1.SchemaId = H2.SchemaId AND H1.CompanyCode = H2.CompanyCode
+		WHERE H2.SchemaId IS NULL
+
+		-- Get Data Update
+		SELECT H1.SchemaId, H1.CompanyCode INTO #S_PromoHeader_U
+		FROM @S_PromoSchema H1
+		INNER JOIN S_PromoSchema H2 
+			ON H1.SchemaId = H2.SchemaId AND H1.CompanyCode = H2.CompanyCode
+
+		SELECT @RCount  = COUNT(*) from @S_PromoSchema;
+		
+		-- INSERT NEW PROMO SCHEMA ====================================================================================================
+		INSERT INTO [dbo].[S_PromoSchema]
+			([SchemaId]
+			,[CompanyCode]
+			,[SchemaName]
+			,[CreatedBy]
+			,[CreatedOn]
+			,[ModifiedBy]
+			,[ModifiedOn]
+			,[Status]
+			,[AllowChain]
+			,[SAPPromoId])
+		SELECT H1.[SchemaId]
+			,H1.[CompanyCode]
+			,H1.[SchemaName]
+			,H1.[CreatedBy]
+			,H1.[CreatedOn]
+			,H1.[ModifiedBy]
+			,H1.[ModifiedOn]
+			,H1.[Status]
+			,H1.[AllowChain]
+			,H1.[SAPPromoId]
+		FROM @S_PromoSchema H1
+		INNER JOIN #S_PromoHeader_I H2
+			ON H1.SchemaId = H2.SchemaId AND H1.CompanyCode = H2.CompanyCode
+		IF @@ERROR <> 0 
+			BEGIN
+				SET @ErrCode = @@ERROR; SET @ErrMsg = ERROR_MESSAGE();
+				GOTO HANDLE_ERROR --> Roll back when execute failed ...
+			END
+		-- ============================================================================================================================
+		-- UPDATE PROMO HEADER ========================================================================================================
+		UPDATE [dbo].[S_PromoSchema]
+		   SET [SchemaId] = H1.SchemaId
+			  ,[CompanyCode] = H1.CompanyCode
+			  ,[SchemaName] = H1.SchemaName
+			  ,[CreatedBy] = H1.CreatedBy
+			  ,[CreatedOn] = H1.CreatedOn
+			  ,[ModifiedBy] = H1.ModifiedBy
+			  ,[ModifiedOn] = H1.ModifiedOn
+			  ,[Status] = H1.[Status]
+			  ,[AllowChain] = H1.AllowChain
+			  ,[SAPPromoId] = H1.SAPPromoId
+		FROM @S_PromoSchema H1
+		INNER JOIN #S_PromoHeader_U H2
+			ON H1.SchemaId = H2.SchemaId AND H1.CompanyCode = H2.CompanyCode
+		WHERE H1.SchemaId = [S_PromoSchema].SchemaId AND H1.CompanyCode = [S_PromoSchema].CompanyCode
+		IF @@ERROR <> 0 
+			BEGIN
+				SET @ErrCode = @@ERROR; SET @ErrMsg = ERROR_MESSAGE();
+				GOTO HANDLE_ERROR --> Roll back when execute failed ...
+			END
+		-- ============================================================================================================================
+
+		-- SCHEMA LINE ================================================================================================================
+
+		IF (SELECT COUNT(1) FROM @S_SchemaLine) = 0 --(SELECT COUNT(SchemaId) FROM @S_PromoBuy) = 0
+			BEGIN
+				GOTO CONTI1
+			END
+
+		DELETE P
+		FROM S_SchemaLine P 
+		INNER JOIN @S_SchemaLine S ON P.CompanyCode = S.CompanyCode AND P.SchemaId = S.SchemaId
+		WHERE P.SchemaId = S.SchemaId AND P.CompanyCode = S.CompanyCode
+
+		-- INSERT NEW SCHEMA LINE =======================================================================================================
+		INSERT INTO [dbo].[S_SchemaLine]
+			([SchemaId]
+			,[CompanyCode]
+			,[LineNum]
+			,[PromoId]
+			,[Description]
+			,[Priority]
+			,[IsApply])
+		SELECT [SchemaId]
+			,[CompanyCode]
+			,[LineNum]
+			,[PromoId]
+			,[Description]
+			,[Priority]
+			,[IsApply]
+		FROM @S_SchemaLine P
+		IF @@ERROR <> 0 
+			BEGIN
+				SET @ErrCode = @@ERROR; SET @ErrMsg = ERROR_MESSAGE();
+				GOTO HANDLE_ERROR --> Roll back when execute failed ...
+			END
+
+		CONTI1:
+
+
+	END
+-- Commit transaction ===============================================================================================================
+COMMIT TRANSACTION
+	SELECT @ErrCode AS ErrCode, @ErrMsg AS ErrMsg, @RCount AS rcount;
+	RETURN @@ROWCOUNT
+-- Error transaction ================================================================================================================
+HANDLE_ERROR:
+	ROLLBACK TRANSACTION
+	SELECT @ErrCode AS ErrCode, @ErrMsg AS ErrMsg, @@ROWCOUNT AS rcount;
+	RETURN @@ERROR
+--===================================================================================================================================
+
+GO
+
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_EndDateDetailToCentral]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_EndDateDetailToCentral]
+	-- Add the parameters for the stored procedure here
+	@TransId nvarchar(4000),
+	@CompanyCode nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	DECLARE @TB_TransId TABLE
+	(
+		TransId nvarchar(50)
+	)
+	INSERT INTO @TB_TransId
+	SELECT DISTINCT Value FROM string_split(@TransId, ';') WHERE RTRIM(value) <> ''
+
+    -- Insert statements for procedure here
+	SELECT [CompanyCode]
+		,[StoreId]
+		,[Id]
+		,[EndDateId]
+		,[LineId]
+		,[ItemCode]
+		,[UoMCode]
+		,[Description]
+		,[Barcode]
+		,[Price]
+		,[Quantity]
+		,[LineTotal]
+	FROM [dbo].[T_EndDateDetail] L WITH (NOLOCK)
+	INNER JOIN @TB_TransId T ON T.TransId = L.EndDateId
+	WHERE (ISNULL(@CompanyCode, '') = '' OR L.CompanyCode = @CompanyCode)
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_EndDatePaymentToCentral]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_EndDatePaymentToCentral]
+	-- Add the parameters for the stored procedure here
+	@TransId nvarchar(4000),
+	@CompanyCode nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	DECLARE @TB_TransId TABLE
+	(
+		TransId nvarchar(50)
+	)
+	INSERT INTO @TB_TransId
+	SELECT DISTINCT Value FROM string_split(@TransId, ';') WHERE RTRIM(value) <> ''
+
+    -- Insert statements for procedure here
+	SELECT [CompanyCode]
+		,[StoreId]
+		,[EndDateId]
+		,[Id]
+		,[Currency]
+		,[CounterId]
+		,[LineId]
+		,[PaymentCode]
+		,[EOD_Code]
+		,[Amount]
+		,[FCAmount]
+		,[CollectedAmount]
+		,[Balance]
+		,[ShiftId]
+		,[FCCollectedAmount]
+		,[ChangeAmt]
+		,[BankInAmt]
+		,[BankInBalance]
+	FROM [dbo].[T_EndDatePayment] P WITH (NOLOCK)
+	INNER JOIN @TB_TransId T ON T.TransId = P.EndDateId
+	WHERE (ISNULL(@CompanyCode, '') = '' OR P.CompanyCode = @CompanyCode)
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_EndDateToCentral]    Script Date: 2/13/2023 12:08:19 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[SYNC_S_T_EndDateToCentral]
+	-- Add the parameters for the stored procedure here
+	@TransId nvarchar(50),
+	@CompanyCode nvarchar(50),
+	@StoreId nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT [CompanyCode]
+		,[StoreId]
+		,[Id]
+		,[Date]
+		,[Description]
+		,[Remark]
+		,[Status]
+		,[CreateOn]
+		,[CreateBy]
+		,[ModifiedOn]
+		,[ModifiedBy]
+		,[TotalSales]
+		,[TotalCount]
+		,[TotalCollected]
+		,[TotalBalance]
+		,[TaxTotal]
+		,[DiscountTotal]
+		,[PaymentTotal]
+		,[LineItemCount]
+		,[TaxCount]
+		,[DiscountCount]
+		,[PaymentCount]
+		,[AmtNotInBank]
+	FROM [dbo].[T_EndDate] H WITH (NOLOCK)
+	WHERE (ISNULL(@CompanyCode, '') = '' OR H.CompanyCode = @CompanyCode)
+		AND (ISNULL(@TransId, '') = '' OR H.Id = @TransId)
+		AND (ISNULL(@StoreId, '') = '' OR H.StoreId = @StoreId)
+		AND ISNULL(H.SyncCentralStatus, 'A') <> 'Y'
+		
+END
+
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_LogActionsView]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_LogActionsView]
+	-- Add the parameters for the stored procedure here
+	@FromDate datetime,
+	@ToDate datetime,
+	@FunctionName nvarchar(50),
+	@Interface nvarchar(50),
+	@DataID nvarchar(250),
+	@LogStatus nvarchar(500),
+	@TextSearch nvarchar(MAX)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	
+	SELECT [Internal_ID] AS 'ID'
+      ,[Log_Interface] AS 'Interface'
+      ,[Log_Function] AS 'Function'
+      ,[Log_Description] AS 'Description'
+      ,[Log_Contents] AS 'Contents'
+	  ,[Log_ContType] AS 'ContentType'
+      ,[Log_DataID] AS 'DataID'
+      ,[Log_Status] AS 'Status'
+      ,[Log_RoleID] AS 'RoleID'
+      ,[Log_Address] AS 'Address'
+      ,[Log_Datetime] AS 'Datetime'
+      ,[Log_UserID] AS 'UserID'
+      ,[Log_By] AS 'CreatedBy'
+      ,[Log_Type] AS 'LogType'
+	FROM [dbo].[T_LogActions] WITH(NOLOCK)
+	WHERE (CAST(Log_Datetime AS date) BETWEEN @FromDate AND @ToDate)
+	AND (Log_Function = @FunctionName OR ISNULL(@FunctionName, '') = '')
+	AND (log_interface = @INTERFACE OR ISNULL(@INTERFACE, '') = '')
+	AND (Log_DataID like '%' + @DataID + '%' OR ISNULL(@DataID, '') = '')
+	AND ( CHARINDEX(@TextSearch, Log_Contents) > 0 OR @TextSearch = '')
+	AND (ISNULL(@LogStatus, '') = '' OR Log_Status IN (SELECT Value FROM string_split(@LogStatus, ';') WHERE RTRIM(value) <> ''))
+	ORDER BY Log_Datetime DESC
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_SalesHeaderToCentral]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ 
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_SalesHeaderToCentral]
+	-- Add the parameters for the stored procedure here
+	@TransId nvarchar(50),
+	@CompanyCode nvarchar(50),
+	@StoreId nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT DISTINCT TOP 500 H.[TransId]
+		,H.[CompanyCode]
+		,H.[StoreId]
+		,H.[ContractNo]
+		,H.[StoreName]
+		,H.[ShiftId]
+		,H.[CusId]
+		,H.[CusIdentifier]
+		,H.[CusGrpId]
+		,H.[TotalAmount]
+		,H.[TotalPayable]
+		,H.[TotalDiscountAmt]
+		,H.[TotalReceipt]
+		,H.[AmountChange]
+		,H.[PaymentDiscount]
+		,H.[TotalTax]
+		,H.[DiscountType]
+		,H.[DiscountAmount]
+		,H.[DiscountRate]
+		,H.[CreatedOn]
+		,H.[CreatedBy]
+		,H.[ModifiedOn]
+		,H.[ModifiedBy]
+		,H.[Status]
+		,H.[IsCanceled]
+		,H.[Remarks]
+		,H.[SalesPerson]
+		,H.[SalesPersonName]
+		,H.[SalesMode]
+		,H.[SalesType]
+		,H.[RefTransId]
+		,H.[ManualDiscount]
+		,H.[DataSource]
+		,H.[POSType]
+		,H.[SyncMWIStatus]
+		,H.[SyncMWIDate]
+		,H.[SyncMWIMsg]
+		,H.[EInvoice]
+		,H.[SyncJAStatus]
+		,H.[SyncJADate]
+		,H.[SyncJAMsg]
+		,H.[Phone]
+		,H.[CusName]
+		,H.[CusAddress]
+		,H.[Reason]
+		,H.[CollectedStatus]
+		,H.[OMSId]
+		,H.[Chanel]
+		,H.[StartTime]
+		,H.[TerminalId]
+		,H.[RoundingOff]
+		,H.[ShortOrderID]
+		,H.[MerchantId]
+		,H.[OMSStatus]
+		,H.[PromoId]
+		,H.[ApprovalId]
+		,H.[RewardPoints]
+		,H.[ExpiryDate]
+		,H.[DocDate]
+		,H.[CustomF1]
+		,H.[CustomF2]
+		,H.[CustomF3]
+		,H.[CustomF4]
+		,H.[CustomF5]
+		,H.[LuckyNo]
+		,H.[OrderId]
+	FROM [dbo].[T_SalesHeader] H
+	INNER JOIN [T_SalesLine] L ON L.CompanyCode = H.CompanyCode AND L.TransId = H.TransId
+	LEFT JOIN [T_SalesPayment] P ON P.CompanyCode = H.CompanyCode AND P.TransId = H.TransId
+	WHERE (ISNULL(@TransId, '') = '' OR H.TransId = @TransId)
+		AND (ISNULL(@CompanyCode, '') = '' OR H.CompanyCode = @CompanyCode)
+		AND (ISNULL(@StoreId, '') = '' OR H.StoreId = @StoreId)
+		AND H.[Status] <> 'H'	-- không nhận đơn chưa được confirm
+		AND ISNULL(SyncCentralStatus, '') <> 'Y'
+		AND (H.TotalPayable = 0 OR (H.TotalPayable <> 0 AND P.TransId IS NOT NULL)) 
+		AND H.DataSource = 'POS'
+	ORDER BY CreatedOn DESC
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_SalesLineSerialToCentral]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_SalesLineSerialToCentral]
+	-- Add the parameters for the stored procedure here
+	@TransId nvarchar(4000),
+	@CompanyCode nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	DECLARE @TB_TransId TABLE
+	(
+		TransId nvarchar(50)
+	)
+	INSERT INTO @TB_TransId
+	SELECT DISTINCT Value FROM string_split(@TransId, ';') WHERE RTRIM(value) <> ''
+
+	SELECT L.[TransId]
+		,L.[LineId]
+		,L.[CompanyCode]
+		,L.[ItemCode]
+		,L.[SerialNum]
+		,L.[SLocId]
+		,L.[Quantity]
+		,L.[UOMCode]
+		,L.[CreatedBy]
+		,L.[CreatedOn]
+		,L.[ModifiedBy]
+		,L.[ModifiedOn]
+		,L.[Status]
+		,L.[OpenQty]
+		,L.[BaseLine]
+		,L.[BaseTransId]
+		,L.[LineNum]
+		,L.[Description]
+		,L.[Phone]
+		,L.[Name]
+		,L.[CustomF1]
+		,L.[CustomF2]
+		,L.[Prefix]
+		,L.[ExpDate]
+		,L.[StoreId]
+		,L.[CustomF3]
+		,L.[CustomF4]
+		,L.[CustomF5]
+	FROM [dbo].[T_SalesLineSerial] L WITH (NOLOCK)
+	INNER JOIN @TB_TransId T ON T.TransId = L.TransId
+	WHERE (ISNULL(@CompanyCode, '') = '' OR CompanyCode = @CompanyCode)
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_SalesLinesToCentral]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_SalesLinesToCentral] 
+	-- Add the parameters for the stored procedure here
+	@TransId nvarchar(4000),
+	@CompanyCode nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	DECLARE @TB_TransId TABLE
+	(
+		TransId nvarchar(50)
+	)
+	INSERT INTO @TB_TransId
+	SELECT DISTINCT Value FROM string_split(@TransId, ';') WHERE RTRIM(value) <> ''
+
+	SELECT L.[TransId]
+		,L.[LineId]
+		,L.[CompanyCode]
+		,L.[ItemCode]
+		,L.[SLocId]
+		,L.[BarCode]
+		,L.[UOMCode]
+		,L.[Quantity]
+		,L.[Price]
+		,L.[LineTotal]
+		,L.[DiscountType]
+		,L.[DiscountAmt]
+		,L.[DiscountRate]
+		,L.[CreatedBy]
+		,L.[CreatedOn]
+		,L.[ModifiedBy]
+		,L.[ModifiedOn]
+		,L.[Status]
+		,L.[Remark]
+		,L.[PromoId]
+		,L.[PromoType]
+		,L.[PromoPercent]
+		,L.[PromoBaseItem]
+		,L.[SalesMode]
+		,L.[TaxRate]
+		,L.[TaxAmt]
+		,L.[TaxCode]
+		,L.[MinDepositAmt]
+		,L.[MinDepositPercent]
+		,L.[DeliveryType]
+		,L.[POSService]
+		,L.[StoreAreaId]
+		,L.[TimeFrameId]
+		,L.[Duration]
+		,L.[AppointmentDate]
+		,L.[BomID]
+		,L.[PromoPrice]
+		,L.[PromoLineTotal]
+		,L.[BaseLine]
+		,L.[BaseTransId]
+		,L.[OpenQty]
+		,L.[PromoDisAmt]
+		,L.[IsPromo]
+		,L.[IsSerial]
+		,L.[IsVoucher]
+		,L.[PrepaidCardNo]
+		,L.[MemberDate]
+		,L.[MemberValue]
+		,L.[StartDate]
+		,L.[EndDate]
+		,L.[ItemType]
+		,L.[Description]
+		,L.[LineTotalBefDis]
+		,L.[LineTotalDisIncludeHeader]
+		,L.[SerialNum]
+		,L.[Name]
+		,L.[Phone]
+		,L.[ItemTypeS4]
+		,L.[Custom1]
+		,L.[Custom2]
+		,L.[Custom3]
+		,L.[Custom4]
+		,L.[Custom5]
+		,L.[PriceListId]
+		,L.[ProductId]
+		,L.[WeightScaleBarcode]
+		,L.[StoreId]
+		,L.[BookletNo]
+	FROM [dbo].[T_SalesLine] L WITH (NOLOCK)
+	INNER JOIN [dbo].[T_SalesHeader] H ON H.TransId = L.TransId
+	INNER JOIN @TB_TransId T ON T.TransId = L.TransId
+	WHERE (ISNULL(@CompanyCode, '') = '' OR L.CompanyCode = @CompanyCode)
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_SalesPaymentToCentral]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_SalesPaymentToCentral]
+	-- Add the parameters for the stored procedure here
+	@TransId nvarchar(4000),
+	@CompanyCode nvarchar(50),
+	@PaymentCode nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	DECLARE @TB_TransId TABLE
+	(
+		TransId nvarchar(50)
+	)
+	INSERT INTO @TB_TransId
+	SELECT DISTINCT Value FROM string_split(@TransId, ';') WHERE RTRIM(value) <> ''
+
+	SELECT P.[PaymentCode]
+		,P.[CompanyCode]
+		,P.[TransId]
+		,P.[LineId]
+		,P.[TotalAmt]
+		,P.[ReceivedAmt]
+		,P.[PaidAmt]
+		,P.[ChangeAmt]
+		,P.[PaymentMode]
+		,P.[CardType]
+		,P.[CardHolderName]
+		,P.[CardNo]
+		,P.[VoucherBarCode]
+		,P.[VoucherSerial]
+		,P.[CreatedBy]
+		,P.[CreatedOn]
+		,P.[ModifiedBy]
+		,P.[ModifiedOn]
+		,P.[Status]
+		,P.[ChargableAmount]
+		,P.[PaymentDiscount]
+		,P.[CollectedAmount]
+		,P.[RefNumber]
+		--,P.[SyncMWIStatus]
+		--,P.[SyncMWIDate]
+		--,P.[SyncMWIMsg]
+		,P.[DataSource]
+		--,P.[SyncDate]
+		--,P.[SyncSource]
+		,P.[Currency]
+		,P.[FCAmount]
+		,P.[Rate]
+		,P.[ShiftId]
+		,P.[CardExpiryDate]
+		,P.[AdjudicationCode]
+		,P.[AuthorizationDateTime]
+		,P.[TerminalId]
+		,P.[RoundingOff]
+		,P.[FCRoundingOff]
+		,P.[ForfeitCode]
+		,P.[Forfeit]
+		,P.[CustomF1]
+		,P.[CustomF2]
+		,P.[CustomF3]
+		,P.[CustomF4]
+		,P.[CustomF5]
+		,P.[StoreId]
+	FROM [dbo].[T_SalesPayment] P WITH (NOLOCK)
+	INNER JOIN @TB_TransId T ON T.TransId = P.TransId
+	WHERE (ISNULL(@CompanyCode, '') = '' OR P.CompanyCode = @CompanyCode)
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_SalesPromoToCentral]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_SalesPromoToCentral]
+	-- Add the parameters for the stored procedure here
+	@TransId nvarchar(4000),
+	@CompanyCode nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	DECLARE @TB_TransId TABLE
+	(
+		TransId nvarchar(50)
+	)
+	INSERT INTO @TB_TransId
+	SELECT DISTINCT Value FROM string_split(@TransId, ';') WHERE RTRIM(value) <> ''
+
+	SELECT L.[Id]
+		,L.[TransId]
+		,L.[CompanyCode]
+		,L.[ItemCode]
+		,L.[BarCode]
+		,L.[RefTransId]
+		,L.[ApplyType]
+		,L.[ItemGroupId]
+		,L.[UOMCode]
+		,L.[Value]
+		,L.[PromoId]
+		,L.[PromoType]
+		,L.[PromoTypeLine]
+		,L.[CreatedBy]
+		,L.[CreatedOn]
+		,L.[ModifiedBy]
+		,L.[ModifiedOn]
+		,L.[Status]
+		,L.[PromoPercent]
+		,L.[PromoAmt]
+		,L.[StoreId]
+	FROM [dbo].[T_SalesPromo] L WITH (NOLOCK)
+	INNER JOIN [dbo].[T_SalesHeader] H ON H.TransId = L.TransId
+	INNER JOIN @TB_TransId T ON T.TransId = L.TransId
+	WHERE (ISNULL(@CompanyCode, '') = '' OR L.CompanyCode = @CompanyCode)
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_ShiftHeaderToCentral]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_ShiftHeaderToCentral]
+	-- Add the parameters for the stored procedure here
+	@ShiftId nvarchar(50),
+	@CompanyCode nvarchar(50),
+	@StoreId nvarchar(50),
+	@DailyId nvarchar(50),
+	@DeviceId nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT [ShiftId]
+		,[CompanyCode]
+		,[StoreId]
+		,[DailyId]
+		,[DeviceId]
+		,[OpenAmt]
+		,[EndAmt]
+		,[ShiftTotal]
+		,[CreatedOn]
+		,[CreatedBy]
+		,[ModifiedOn]
+		,[ModifiedBy]
+		,[Status]
+		,[Id]
+	FROM [dbo].[T_ShiftHeader] H WITH (NOLOCK)
+	WHERE (ISNULL(@CompanyCode, '') = '' OR H.CompanyCode = @CompanyCode)
+		AND (ISNULL(@ShiftId, '') = '' OR H.Id = @ShiftId)
+		AND (ISNULL(@StoreId, '') = '' OR H.StoreId = @StoreId)
+		AND (ISNULL(@DailyId, '') = '' OR H.DailyId = @DailyId)
+		AND (ISNULL(@DeviceId, '') = '' OR H.DeviceId = @DeviceId)
+		AND ISNULL(H.SyncCentralStatus, 'A') <> 'Y'
+		AND EndAmt IS NOT NULL
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_ShiftLineToCentral]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_ShiftLineToCentral]
+	-- Add the parameters for the stored procedure here
+	@ShiftId nvarchar(4000),
+	@CompanyCode nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	DECLARE @TB_TransId TABLE
+	(
+		TransId nvarchar(50)
+	)
+	INSERT INTO @TB_TransId
+	SELECT DISTINCT Value FROM string_split(@ShiftId, ';') WHERE RTRIM(value) <> ''
+
+    -- Insert statements for procedure here
+	SELECT [ShiftId]
+		,[CompanyCode]
+		,[PaymentCode]
+		,[Currency]
+		,[CounterId]
+		,[Value]
+		,[FCValue]
+		,[CreatedOn]
+		,[CreatedBy]
+		,[ModifiedOn]
+		,[ModifiedBy]
+		,[Status]
+		,[CollectAmount]
+		,[FCCollectedAmount]
+		,[BankInAmt]
+		,[CountedBalance]
+		,[BankInBalance]
+		,[Cashier]
+		,[CustomF1]
+		,[CustomF2]
+		,[CustomF3]
+		,[CustomF4]
+		,[CustomF5]
+	FROM [dbo].[T_ShiftLine] L WITH (NOLOCK)
+	INNER JOIN @TB_TransId T ON T.TransId = L.ShiftId
+	WHERE (ISNULL(@CompanyCode, '') = '' OR L.CompanyCode = @CompanyCode)
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_ShiftSummaryDetailsToCentral]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- SYNC_S_T_StoreSummaryDetails 'CP001', '211101;211101'
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_ShiftSummaryDetailsToCentral]
+	-- Add the parameters for the stored procedure here
+	@CompanyCode nvarchar(50),
+	@ShiftId nvarchar(50),
+	@TerminalId nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT [CompanyCode]
+		  ,[ShiftId]
+		  ,[TerminalId]
+		  ,[SummaryType]
+		  ,[SummaryValue]
+		  ,[SummaryCount]
+		  ,[SummaryAmount]
+		  ,[Currency]
+		  ,[CreatedOn]
+		  ,[CreatedBy]
+		  ,[ModifiedOn]
+		  ,[ModifiedBy]
+	FROM [dbo].[T_ShiftSummary] T WITH (NOLOCK)
+	WHERE (ISNULL(@ShiftId, '') = '' OR T.ShiftId = @ShiftId)
+		AND (ISNULL(@CompanyCode, '') = '' OR T.CompanyCode = @CompanyCode)
+		AND (ISNULL(@TerminalId, '') = '' OR T.TerminalId = @TerminalId)
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_ShiftSummaryHeaderToCentral]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+-- EXEC SYNC_S_T_StoreSummaryHeader 'CP001', ''
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_ShiftSummaryHeaderToCentral]
+	-- Add the parameters for the stored procedure here
+	@CompanyCode nvarchar(50),
+	@ShiftId nvarchar(50),
+	@TerminalId nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT DISTINCT [CompanyCode]
+		,[ShiftId]
+		,[TerminalId]
+		,CONVERT(VARCHAR(10), [CreatedOn], 105) AS [CreatedOn]
+	FROM [dbo].[T_ShiftSummary] H WITH (NOLOCK)
+	WHERE (ISNULL(@CompanyCode, '') = '' OR H.CompanyCode = @CompanyCode)
+		AND (ISNULL(@ShiftId, '') = '' OR H.ShiftId = @ShiftId)
+		AND (ISNULL(@TerminalId, '') = '' OR H.TerminalId = @TerminalId)
+		AND ISNULL(H.SyncCentralStatus, 'A') <> 'Y'
+		
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_StoreDailyDetailsToCentral]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- SYNC_S_T_StoreSummaryDetails 'CP001', '211101;211101'
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_StoreDailyDetailsToCentral]
+	-- Add the parameters for the stored procedure here
+	@CompanyCode nvarchar(50),
+	@DailyId nvarchar(50),
+	@StoreId nvarchar(50),
+	@DeviceId nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT [CompanyCode]
+		,[StoreId]
+		,[DailyId]
+		,[DeviceId]
+		,[CreateDate]
+		,[TotalSales]
+		,[TotalCount]
+		,[CreatedBy]
+		,[CreatedOn]
+		,[ModifiedBy]
+		,[ModifiedOn]
+		,[Status]
+		,[TotalCollected]
+		,[TotalBalance]
+	FROM [dbo].[T_StoreDaily] T WITH (NOLOCK)
+	WHERE (ISNULL(@DailyId, '') = '' OR T.DailyId = @DailyId)
+		AND (ISNULL(@CompanyCode, '') = '' OR T.CompanyCode = @CompanyCode)
+		AND (ISNULL(@StoreId, '') = '' OR T.StoreId = @StoreId)
+		AND (ISNULL(@DeviceId, '') = '' OR T.DeviceId = @DeviceId)
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_StoreDailyHeaderToCentral]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- EXEC SYNC_S_T_StoreSummaryHeader 'CP001', ''
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_StoreDailyHeaderToCentral]
+	-- Add the parameters for the stored procedure here
+	@CompanyCode nvarchar(50),
+	@StoreId nvarchar(50),
+	@DailyId nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT DISTINCT [CompanyCode]
+		,[StoreId]
+		,[DailyId]
+		,[DailyId]
+		,[DeviceId]
+	FROM [dbo].[T_StoreDaily] H WITH (NOLOCK)
+	WHERE (ISNULL(@CompanyCode, '') = '' OR H.CompanyCode = @CompanyCode)
+		AND (ISNULL(@DailyId, '') = '' OR H.DailyId = @DailyId)
+		AND (ISNULL(@StoreId, '') = '' OR H.StoreId = @StoreId)
+		AND ISNULL(H.SyncCentralStatus, 'A') <> 'Y'
+		
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_StoreSummaryDetailsToCentral]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- SYNC_S_T_StoreSummaryDetails 'CP001', '211101;211101'
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_StoreSummaryDetailsToCentral]
+	-- Add the parameters for the stored procedure here
+	@CompanyCode nvarchar(50),
+	@DailyId nvarchar(50),
+	@StoreId nvarchar(50),
+	@TerminalId nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	--DECLARE @TB_TransId TABLE
+	--(
+	--	TransId nvarchar(50)
+	--)
+	--INSERT INTO @TB_TransId
+	--SELECT DISTINCT Value FROM string_split(@DailyId, ';') WHERE RTRIM(value) <> ''
+
+    -- Insert statements for procedure here
+	SELECT T.[CompanyCode]
+		,T.[StoreId]
+		,T.[DailyId]
+		,T.[TerminalId]
+		,T.[SummaryType]
+		,T.[SummaryValue]
+		,T.[SummaryCount]
+		,T.[SummaryAmount]
+		,T.[BusinessDate]
+		,T.[Currency]
+		,T.[CreatedOn]
+		,T.[CreatedBy]
+		,T.[ModifiedOn]
+		,T.[ModifiedBy]
+	FROM [dbo].[T_StoreSummary] T WITH (NOLOCK)
+	WHERE (ISNULL(@DailyId, '') = '' OR T.DailyId = @DailyId)
+		AND (ISNULL(@CompanyCode, '') = '' OR T.CompanyCode = @CompanyCode)
+		AND (ISNULL(@StoreId, '') = '' OR T.StoreId = @StoreId)
+		AND (ISNULL(@TerminalId, '') = '' OR T.TerminalId = @TerminalId)
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SYNC_S_T_StoreSummaryHeaderToCentral]    Script Date: 1/30/2023 5:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+-- EXEC SYNC_S_T_StoreSummaryHeader 'CP001', ''
+-- =============================================
+CREATE PROCEDURE [dbo].[SYNC_S_T_StoreSummaryHeaderToCentral]
+	-- Add the parameters for the stored procedure here
+	@CompanyCode nvarchar(50),
+	@StoreId nvarchar(50),
+	@DailyId nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT DISTINCT [CompanyCode]
+		,[StoreId]
+		,[DailyId]
+		,[TerminalId]
+		,[BusinessDate]
+		,CONVERT(VARCHAR(10), [CreatedOn], 105) AS [CreatedOn]
+	FROM [dbo].[T_StoreSummary] H WITH (NOLOCK)
+	WHERE (ISNULL(@CompanyCode, '') = '' OR H.CompanyCode = @CompanyCode)
+		AND (ISNULL(@DailyId, '') = '' OR H.DailyId = @DailyId)
+		AND ISNULL(H.SyncCentralStatus, 'A') <> 'Y'
+		
+END
+GO
+
+
+----------------
+
+INSERT [dbo].[M_Customer] ([CompanyCode], [CustomerId], [CustomerGrpId], [CustomerName], [Address], [Phone], [DOB], [JoinedDate], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn], [Status], [CusType], [SyncDate], [SyncSource], [CustomerRank], [CustomerRankName], [RewardPoints], [Gender], [Email], [CardNo], [CustomF1], [CustomF2], [CustomF3], [CustomF4], [CustomF5], [DoNotAccumPoints]) VALUES (N'CP001', N'3023', N'2', N'Walk-in', N'Servay Express Sdn Bhd Kampung Laut', N'', NULL, CAST(N'2022-01-24T11:54:38.000' AS DateTime), N'admin', CAST(N'2022-01-24T12:54:39.597' AS DateTime), NULL, NULL, N'A', N'C', NULL, NULL, N'', N'', NULL, N'', N'', NULL, N'', N'', N'', N'', N'', NULL)
+GO
+
+GO
+INSERT [dbo].[S_Permission] ([Id], [Name], [Description], [Status]) VALUES (N'A', N'Approve', N'Approve', 0)
+GO
+INSERT [dbo].[S_Permission] ([Id], [Name], [Description], [Status]) VALUES (N'D', N'Delete', N'Delete', 1)
+GO
+INSERT [dbo].[S_Permission] ([Id], [Name], [Description], [Status]) VALUES (N'E', N'Edit', N'Edit', 1)
+GO
+INSERT [dbo].[S_Permission] ([Id], [Name], [Description], [Status]) VALUES (N'I', N'Insert', N'Insert', 1)
+GO
+INSERT [dbo].[S_Permission] ([Id], [Name], [Description], [Status]) VALUES (N'V', N'View', N'View', 1)
+GO
+
+
+----
+/*
+- Sync user trước, store master
+1. Insert M_Customer, Insert customer default trong Store_Setup, trên central và store
+2. Insert S_permission
+3. Sync Role
+4. Assign store cho user
+5. Save để tạo GeneralSetting
+6. Bật auto master
+*/

@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ImplementsMwi\InvoiceService - Copy.cs" />
+    <Compile Remove="ImplementsMwi\SalesService - Copy.cs" />
+    <Compile Remove="Implements\SaleService - Copy.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="PrintLayout\PrintLayout_060622_1413.rar" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Dapper" Version="2.0.78" />
+    <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+    <PackageReference Include="Dapper.SimpleCRUD" Version="2.2.0.1" />
+    <PackageReference Include="DevExpress.Document.Processor" Version="21.2.8" />
+    <PackageReference Include="DevExpress.Reporting.Core" Version="21.2.8" />
+    <!--<PackageReference Include="DevExpress.Document.Processor" Version="21.2.6" />
+    <PackageReference Include="DevExpress.Reporting.Core" Version="21.2.6" />-->
+    <PackageReference Include="ESCPOS" Version="1.2.2" />
+    <PackageReference Include="FreeSpire.PDF" Version="8.2.0" />
+    <PackageReference Include="itextsharp.xmlworker" Version="5.5.13.3" />
+    <PackageReference Include="Microsoft.SqlServer.SqlManagementObjects" Version="150.18208.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
+    <PackageReference Include="System.IO.Ports" Version="6.0.0" />
+    <PackageReference Include="System.Management" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RPFO.Data\RPFO.Data.csproj" />
+    <ProjectReference Include="..\RPFO.Utilities\RPFO.Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="PrintLayout\PrintLucky.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Update="PrintLayout\PrintLucky_55.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Update="PrintLayout\PrintPDF.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Update="PrintLayout\PrintReceipt.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Update="PrintLayout\PrintByType.cs">
+      <SubType>XtraReport</SubType>
+    </Compile>
+    <Compile Update="PrintLayout\PrintReceipt_55.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
+</Project>

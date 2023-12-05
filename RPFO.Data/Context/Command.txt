@@ -1,0 +1,7 @@
+﻿dotnet ef dbcontext scaffold "Server=10.20.35.40;Database=ITGDB;user id=sa;password=VIAdmin@787;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -o Entities --context-dir Context -c JumpContext -f
+
+dotnet ef dbcontext scaffold "Server=192.168.1.83;Database=ABEO_MWI;user id=sa;password=sa@787&*&;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -o EntitiesMWI --context-dir Context -c MwiContext -f
+
+dotnet ef dbcontext scaffold "Server=sapvn.com,56231;Database=ABEO_MWI;user id=sa;password=sa@787&*&;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -o EntitiesMWI --context-dir Context -c MwiContext -f
+
+dotnet ef dbcontext scaffold "Server=192.168.1.83;Database=RTFO_POS_NEW;user id=sa;password=sa@787&*&;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -o Entities --context-dir Context -c JumpContext -f

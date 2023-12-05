@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <StartupObject></StartupObject>
+    <UserSecretsId>617444d9-cb60-4908-9c49-10773822dfd1</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Converter\**" />
+    <Content Remove="Converter\**" />
+    <EmbeddedResource Remove="Converter\**" />
+    <None Remove="Converter\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Helpers\ApiFactory.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <!--<PackageReference Include="DevExpress.Reporting.Core" Version="21.2.6" />-->
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.1" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="4.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="System.CodeDom" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RPFO.Application\RPFO.Application.csproj" />
+    <ProjectReference Include="..\RPFO.Data\RPFO.Data.csproj" />
+  </ItemGroup>
+
+</Project>
